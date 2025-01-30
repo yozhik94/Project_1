@@ -57,16 +57,16 @@ Pandas NumPy Feature-engine Matplotlib Seaborn  Lightgbm XGBoost Bayesian-optimi
 
 Проведен анализ данных и также предобработка данных, в ходе которой добавленны новые признаки и кодированны категориальные признаки.
 
-|   |   |
+| Модель  | ROC-AUC  |
 |---|---|
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
-|   |   |
+| LogisticRegression  |  0.666949 |
+| LinearSVC  |  0.61839 |
+|  MLPClassifier |  0.696518  |
+| GaussianNB  | 0.645072  |
+|  DecisionTreeClassifier |  0.522172 |
+| RandomForestClassifier  | 0.618262  |
+| HistGradientBoostingClassifier  | 0.706127  |
+|  XGBClassifier |   |
 |   |   |
 
 Лучший результат продемонстрировала модель градиентного бустинга. Метрика на тестовом наборе данных ROC-AUC - 0.910.
