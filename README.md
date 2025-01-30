@@ -49,6 +49,47 @@
 
 ***Реклама*** в социальных сетях — все визиты с ga_sessions.utm_source in ('QxAxdyPLuQMEcrdZWdWb', 'MvfHsxITijuriZxsqZqt', 'ISrKoXQCxqqYvAZICvjs', 'IZEXUFLARCUMynmHNBGo', 'PlbkrSYoHuZBWfYjYnfw', 'gVRrcxiDQubJiljoTbGm').
 
+`ga_hits.csv`                                                                         
+
+| # | Column          |       Description                        |Dtype      | isna    |
+|---|-----------------|------------------------------------------|-----------|---------|
+| 0 |   session_id    | ID визита                                |  object   |0        |    
+| 1 |   hit_date      | дата события                             |  object   |0        |
+| 2 |   hit_time      | время события                            |  float64  |9160322  |
+| 3 |   hit_number    | порядковый номер события в рамках сессии |  int64    |0        |
+| 4 |   hit_type      | тип события                              |  object   |0        |
+| 5 |   hit_referer   | источник события                         |  object   |6274804  |
+| 6 |   hit_page_path | страница события                         |  object   |0        |
+| 7 |   event_category| тип действия                             |  object   |0        |
+| 8 |   event_action  | действие                                 |  object   |0        |
+| 9 |   event_label   | тег действия                             |  object   |3760184  |
+| 10|   event_value   | значение результата действия              |  float64  |15726470 |
+
+`df_session`
+
+|#    |Column                   | Description                      | Dtype  | isna    |
+|-----|-------------------------|----------------------------------|--------|---------|
+| 0   |session_id               | ID визита                        |object  |  0      |
+| 1   |client_id                | ID посетителя                    |object  |0        |
+| 2   |visit_date               | дата визита                      |object  |0        |
+| 3   |visit_time               | время визита                     | object |0        |
+| 4   |visit_number             | порядковый номер визита клиента  |int64   |0        |
+| 5   |utm_source               | канал привлечения                |object  |97       |
+| 6   |utm_medium               | тип привлечения                  |object  |0        |
+| 7   |utm_campaign             | рекламная кампания               | object |219603   |
+| 8   |utm_adcontent            | ссылка по которой осуществлен визит клиета                                 |object  |335615   |
+| 9   |utm_keyword              | ключевое слово                   | object |1082061  |
+| 10  |device_category          | тип устройства                   |object  |0        |
+| 11  |device_os                | ОС устройства                    |  object|1070138  |
+| 12  |device_brand             | марка устройства                 |  object|367178   |
+| 13  |device_model             | модель устройства                | object |1843704  |
+| 14  |device_screen_resolution | разрешение экрана                | object |0        |
+| 15  |device_browser           | браузер                          | object |0        |
+| 16  |geo_country              | страна                           |object  |0        |
+| 17  |geo_city                 | город                            | object |0        |
+
+
+
 ## Использованные библиотеки
 
 Pandas NumPy Feature-engine Matplotlib Seaborn  Lightgbm XGBoost Bayesian-optimization
@@ -66,10 +107,21 @@ Pandas NumPy Feature-engine Matplotlib Seaborn  Lightgbm XGBoost Bayesian-optimi
 |  DecisionTreeClassifier |  0.522172 |
 | RandomForestClassifier  | 0.618262  |
 | HistGradientBoostingClassifier  | 0.706127  |
-|  XGBClassifier |   |
-|   |   |
+|  XGBClassifier |  0.710057 |
+|  LGBMClassifier |  0.706464 |
 
-Лучший результат продемонстрировала модель градиентного бустинга. Метрика на тестовом наборе данных ROC-AUC - 0.910.
+Лучший результат продемонстрировали две модели градиентного бустинга  XGBClassifier и LGBMClassifier. 
 
-Так же по результатам исследования важности признаков подтвержденно предроложение, что большинство оттока клиентов связано с большим месячным платежём.
+Лучшей моделью является LightGBM по следующим причинам:
+
+- Один из лучших показателей roc_auc;
+- Быстрое обучение;
+- Модель интерпретируема, то есть можно получить показатели выжности признаков;
+- Можно предсказать вероятность класса
+  
+Оптимизация модели и конвейера по подготовке данных проводится с помощью байесовской оптимизации. При разных гиперпараметрах модель обучается на тренировачных данных, а оценивается на валидационных.
+
+**ROC-AUC на тестовой выборки равен  - 0.715478** 
+
+Так же результат исследования важности признаков показал, что больше всего на отклик клиента связан с датой посещения сервиса и близость проживания клиента к г. Москва.
 
