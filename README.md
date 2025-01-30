@@ -1,6 +1,6 @@
 # Проект -   «СберАвтоподписка»
-# Описание проекта.
-_____
+## Описание проекта.
+
 **«СберАвтоподписка»** — это сервис долгосрочной аренды автомобилей для физлиц. Продуктовая команда сервиса хочет понять, из каких источников к нам идёт самый полезный трафик,
 какие авто пользуются наибольшим спросом, с каких устройств чаще всего заходят на сайт, какие действия
 и формулировки вызывают наибольший отклик.
@@ -34,3 +34,25 @@ _____
 автомобиля в другие города России.
 
 После оформления подписки пользователь взаимодействует   со «СберАвтоподпиской» по телефону и с помощью электронной почты. Ссылки на оплату услуги приходят по почте и SMS. 
+
+### Описание данных
+
+***Целевое действие*** — события типа «Оставить заявку» и «Заказать звонок» (ga_hits.event_action in ['sub_car_claim_click', 'sub_car_claim_submit_click', 'sub_open_dialog_click', 'sub_custom_question_submit_click', 'sub_call_number_click', 'sub_callback_submit_click', 'sub_submit_success', 'sub_car_request_submit_click']).
+
+***CR (Conversion Rate)*** — показатель конверсии из визита (уникальный session_id) в любое целевое действие в рамках одного визита (в случае наличия >1 целевого действия — считать все как одно). 
+
+****Органический трафик*** — все визиты с ga_sessions.utm_medium in ('organic', 'referral', '(none)').
+
+***Платный трафик***  — весь неорганический трафик. 
+
+***Информация про марку и модель авто*** —  содержится в ga_hits.hit_page_path. 
+
+***Реклама*** в социальных сетях — все визиты с ga_sessions.utm_source in ('QxAxdyPLuQMEcrdZWdWb', 'MvfHsxITijuriZxsqZqt', 'ISrKoXQCxqqYvAZICvjs', 'IZEXUFLARCUMynmHNBGo', 'PlbkrSYoHuZBWfYjYnfw', 'gVRrcxiDQubJiljoTbGm').
+
+## Использованные библиотеки
+
+Pandas NumPy Feature-engine Matplotlib Seaborn  Lightgbm XGBoost Bayesian-optimization
+
+## Выводы
+
+
